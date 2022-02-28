@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: none;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: none;
+    padding: 40px;
+    background-image: linear-gradient(to right, lightblue, darkblue);
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    height: 70px;
+    font-family: sans-serif;
+}
+
+h2 { 
+    padding: none;
+    /* margin: 7px 0 10px 0; */
+}
+
+#inputValue {
+    padding: 7px;
+}
+
+.button{
+    margin: 20px 0;
+    padding: 10px 30px;
+}
+
+.jumbo-current {
+    height: 300px;
+    /* width: 81%; */
+    border: solid black 2px;
+    margin: 50px 0 30px 0;
+}
+
+#searchCities {
+    margin: 50px;
+}
+
+#currentCity {
+    margin: 50px;
+}
+
+#five-day {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0px;
+}
+
+#past-searches {
+    padding: 40px 0;
+    list-style: none;
+}
+.past{
+margin-bottom: 15px;
+}
