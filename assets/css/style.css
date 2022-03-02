@@ -27,33 +27,47 @@ h2 {
     /* margin: 7px 0 10px 0; */
 }
 
+#title {
+    margin: 30px 0;
+}
+
 #inputValue {
     padding: 7px;
+    width: 300px;
+    border-radius: 5px;
+
 }
 
 .button{
     margin: 20px 0;
-    padding: 10px 30px;
+    padding: 7px 30px;
+    width: 300px;
+    background-color: #22A0DF;
+    color: white;
+    border-radius: 5px;
+
 }
+
 
 .jumbo-current {
     height: 300px;
-    /* width: 81%; */
+    width: 100%;
     border: solid black 2px;
-    margin: 50px 0 30px 0;
+    margin: 10px 0 30px 0;
 }
 
 #searchCities {
-    margin: 50px;
+    margin: 10px 0 0 50px;
 }
 
 #currentCity {
-    margin: 50px;
+    margin: 10px 0 0 50px;
 }
 
 #five-day {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    width: 100%;
     margin-left: 0px;
 }
 
@@ -63,4 +77,19 @@ h2 {
 }
 .past{
 margin-bottom: 15px;
+background-color: gainsboro;
+width: 300px;
+padding:7px;
+border-radius: 5px;
+text-align: center;
+}
+
+.card {
+    background-color: #034A6C;
+    color: white;
+    height: 300px;
+}
+
+hr {
+    width: 300px;
 }
