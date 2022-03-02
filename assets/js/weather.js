@@ -13,6 +13,9 @@ fetch ('https://api.openweathermap.org/data/2.5/weather?q='+inputValue+'&units=i
         .then(data => {
             var date = moment().format("MMMM Do YYYY, h:mm a");
             displayDate.innerText= inputValue + " " + "(" + date + ")";
+            var tempValue = data['main']['temp'] + " degrees";
+            temp.innerText = "Temp: " + tempValue;
+            windSpeed.innerText = "Wind: " + data['wind']['speed']  + " MPH";
+            humidity.innerText = "Humidity: " + data['main']['humidity'] + "%";
         })
-        console.log(inputValue);
     });
