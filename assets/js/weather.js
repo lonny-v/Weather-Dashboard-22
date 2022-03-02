@@ -24,10 +24,32 @@ searchBtn.addEventListener('click', function (e) {
             var lat = data.coord.lat;
             var lon = data.coord.lon;
             displayUvIndex(lat, lon);
+
+            cities.push(inputValue);
+            saveCity();
+            searches();
         })
 });
 
+var saveCity = function () {
+    // var newCity = inputValue.value
+    localStorage.setItem("City", JSON.stringify(cities));
+};
 
+// var searches = function () {
+//     // var displayCity = JSON.parse(localStorage.getItem("City"));
+//     // // console.log(displayCity);
+//     var pastCities = JSON.parse(localStorage.getItem("City"));
+//     for (let i = 0; i < 7; i++) {
+
+//         pastCities +=
+//             `<div class="past">
+//         <h6>${inputValue}</h6>
+//         </div>`
+//     }
+//     document.querySelector(".past").innerHTML = pastCities;
+
+// }
 function displayUvIndex(lat, lon) {
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&APPID=f9d491be2c04cabd7a30f6d0ce1b0f1e")
         .then(response => response.json())
@@ -52,6 +74,7 @@ function fiveDay(city) {
                 let date = forecast[i].dt_txt;
                 year = date.slice(0, 4);
                 date = date.slice(0, -9).substring(5).replace('-', '/').concat('/', year);
+
                 HTMLText += `<div class="card col-2">
                 <h4>${date}</h4>
                 <img src="https://openweathermap.org/img/wn/${forecast[i]['weather'][0]['icon']}@2x.png"/>
