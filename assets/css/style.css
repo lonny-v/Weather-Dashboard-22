@@ -77,8 +77,9 @@ h2 {
     list-style: none;
 }
 .past{
-margin-bottom: 15px;
+margin-bottom: 2px;
 background-color: gainsboro;
+color: black;
 width: 300px;
 padding:7px;
 border-radius: 5px;
@@ -94,4 +95,8 @@ text-align: center;
 
 hr {
     width: 300px;
+}
+
+br {
+    margin-top: 15px;
 }

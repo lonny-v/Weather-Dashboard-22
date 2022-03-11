@@ -1,9 +1,13 @@
-var searchBtn = document.getElementById('searchBtn');
+var searchBtn = document.querySelector('.search');
 var displayDate = document.getElementById('displayDate');
 var temp = document.getElementById('temp');
 var windSpeed = document.getElementById('windSpeed');
 var humidity = document.getElementById('humidity');
 var uvIndex = document.getElementById('uvIndex');
+var pastSearches = document.getElementById('past-searches');
+var inputValue = document.getElementById('inputValue').value;
+var pastCity = document.createElement("btn");
+
 
 var cities = [];
 
@@ -26,30 +30,36 @@ searchBtn.addEventListener('click', function (e) {
             displayUvIndex(lat, lon);
 
             cities.push(inputValue);
-            saveCity();
-            searches();
+            var pastCity = document.createElement("btn");
+            pastCity.textContent = inputValue;
+            pastCity.classList = 'past search button';
+            pastCity.setAttribute("type", "submit");
+            pastSearches.appendChild(pastCity);
+            var br = document.createElement("br");
+            pastSearches.appendChild(br);
+            console.log(pastCity.textContent);
+            pastCity.addEventListener('click', history(pastCity.textContent));
         })
 });
 
-var saveCity = function () {
-    // var newCity = inputValue.value
-    localStorage.setItem("City", JSON.stringify(cities));
+function history() {
+    inputValue = pastCity.textContent
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue + '&units=imperial&APPID=f9d491be2c04cabd7a30f6d0ce1b0f1e')
+        .then(response => response.json())
+        .then(data => {
+            var date = moment().format("MMMM Do YYYY, h:mm a");
+            displayDate.innerText = inputValue + " " + "(" + date + ")";
+            img.setAttribute("src", `https://openweathermap.org/img/wn/${data['weather'][0]['icon']}@2x.png`);;
+            var tempValue = data['main']['temp'] + " degrees";
+            temp.innerText = "Temp: " + tempValue;
+            windSpeed.innerText = "Wind: " + data['wind']['speed'] + " MPH";
+            humidity.innerText = "Humidity: " + data['main']['humidity'] + "%";
+            var lat = data.coord.lat;
+            var lon = data.coord.lon;
+            displayUvIndex(lat, lon);
+        });
 };
 
-// var searches = function () {
-//     // var displayCity = JSON.parse(localStorage.getItem("City"));
-//     // // console.log(displayCity);
-//     var pastCities = JSON.parse(localStorage.getItem("City"));
-//     for (let i = 0; i < 7; i++) {
-
-//         pastCities +=
-//             `<div class="past">
-//         <h6>${inputValue}</h6>
-//         </div>`
-//     }
-//     document.querySelector(".past").innerHTML = pastCities;
-
-// }
 function displayUvIndex(lat, lon) {
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&APPID=f9d491be2c04cabd7a30f6d0ce1b0f1e")
         .then(response => response.json())
@@ -86,3 +96,7 @@ function fiveDay(city) {
             document.querySelector("#five-day").innerHTML = HTMLText
         })
 }
+
+
+searchBtn.addEventListener('click', fiveDay())
+pastCity.addEventListener('click', history(pastCity.textContent));
